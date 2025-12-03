@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('grind');
             $table->string('status');
             $table->text('notes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

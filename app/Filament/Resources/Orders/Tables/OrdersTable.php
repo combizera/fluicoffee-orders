@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Orders\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -21,7 +21,7 @@ class OrdersTable
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->copyable(),
 
-                TextColumn::make('customer.name')
+                TextColumn::make('customer.user.name')
                     ->label('Cliente')
                     ->searchable()
                     ->sortable(),
@@ -32,14 +32,17 @@ class OrdersTable
 
                 TextColumn::make('roast_point')
                     ->label('Ponto de Torra')
+                    ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('grind')
                     ->label('Moagem')
+                    ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('status')
                     ->label('Status')
+                    ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('created_at')
@@ -54,8 +57,13 @@ class OrdersTable
                 ViewAction::make()
                     ->label('')
                     ->tooltip('Ver Pedido'),
+                ActionGroup::make([
+                    EditAction::make()
+                        ->label('Editar Pedido'),
 
-                EditAction::make(),
+                    DeleteAction::make()
+                        ->label('Excluir Pedido'),
+                ]),
             ])
             ->toolbarActions([
                 //

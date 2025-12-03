@@ -15,14 +15,25 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ClipboardDocumentList;
 
     protected static ?string $recordTitleAttribute = 'uuid';
+
+    protected static ?string $modelLabel = 'Pedido';
+
+    protected static ?string $pluralLabel = 'Pedidos';
+
+    protected static ?string $slug = 'pedidos';
+
+    protected static string | UnitEnum | null $navigationGroup = 'Vendas';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

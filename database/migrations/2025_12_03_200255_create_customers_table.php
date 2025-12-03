@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('cnpj')->unique();
             $table->string('phone');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -39,17 +39,21 @@ class OrdersTable
 
                 TextColumn::make('roast_point')
                     ->label('Ponto de Torra')
+                    ->formatStateUsing(fn(RoastPoint $state) => $state->label())
                     ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('grind')
                     ->label('Moagem')
+                    ->formatStateUsing(fn(Grind $state) => $state->label())
                     ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('status')
                     ->label('Status')
+                    ->formatStateUsing(fn(OrderStatus $state) => $state->label())
                     ->alignCenter()
+                    ->color(fn(OrderStatus $state) => $state->color())
                     ->badge(),
 
                 TextColumn::make('created_at')

@@ -5,6 +5,7 @@ namespace App\Filament\Customer\Resources\Orders\Schemas;
 use App\Enums\Grind;
 use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
+use App\Models\Packing;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -18,23 +19,42 @@ class OrderForm
     {
         return $schema
             ->components([
-                Section::make('Cliente')
-                    ->icon('heroicon-s-user')
-                    ->columnSpan(2)
+                Section::make('Embalagens')
+                    ->icon('heroicon-s-cube')
+                    ->columnSpanFull(2)
                     ->schema([
-                        Select::make('customer_id')
-                            ->label('Cliente')
-                            ->relationship('customer', 'user.name')
-                            ->getOptionLabelFromRecordUsing(fn($record) => $record->user->name)
-                            ->searchable()
-                            ->preload()
-                            ->required(),
-                    ])
-                    ->columns(1),
+                        Repeater::make('packings')
+                            ->label('Embalagens')
+                            ->columns(2)
+                            ->defaultItems(1)
+                            ->addActionLabel('Adicionar Embalagem')
+                            ->collapsible()
+                            ->itemLabel(fn(array $state): ?string =>
+                                isset($state['packing_id'])
+                                    ? 'Embalagem: ' . Packing::find($state['packing_id'])?->name
+                                    : null
+                            )
+                            ->schema([
+                                Select::make('packing_id')
+                                    ->label('Embalagem')
+                                    ->options(Packing::pluck('name', 'id'))
+                                    ->required()
+                                    ->preload()
+                                    ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
+
+                                TextInput::make('quantity')
+                                    ->label('Quantidade')
+                                    ->numeric()
+                                    ->default(1)
+                                    ->minValue(1)
+                                    ->required(),
+                            ]),
+                    ]),
 
                 Section::make('Detalhes do Pedido')
                     ->icon('heroicon-s-shopping-cart')
                     ->columnSpan(2)
+                    ->columns(3)
                     ->schema([
                         Select::make('roast_point')
                             ->label('Ponto de Torra')
@@ -51,62 +71,19 @@ class OrderForm
                             ))
                             ->required()
                             ->native(false),
-
-                        Select::make('status')
-                            ->label('Status')
-                            ->options(collect(OrderStatus::cases())->mapWithKeys(
-                                fn($case) => [$case->value => $case->label()]
-                            ))
-                            ->default(OrderStatus::PENDING->value)
-                            ->required()
-                            ->native(false),
-
-                        Section::make('Observações')
-                            ->icon('heroicon-s-document-text')
-                            ->columnSpan(3)
-                            ->schema([
-                                Textarea::make('notes')
-                                    ->label('Observações')
-                                    ->nullable()
-                                    ->placeholder('Comentários extras sobre o pedido...')
-                                    ->rows(3)
-                                    ->columnSpanFull(),
-                            ]),
-                    ])
-                    ->columns(3),
-
-                Section::make('Embalagens')
-                    ->icon('heroicon-s-cube')
-                    ->columnSpanFull(2)
-                    ->schema([
-                        Repeater::make('packings')
-                            ->label('Embalagens')
-                            ->relationship()
-                            ->schema([
-                                Select::make('packing_id')
-                                    ->label('Embalagem')
-                                    ->options(\App\Models\Packing::pluck('name', 'id'))
-                                    ->required()
-                                    ->preload()
-                                    ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
-
-                                TextInput::make('quantity')
-                                    ->label('Quantidade')
-                                    ->numeric()
-                                    ->default(1)
-                                    ->minValue(1)
-                                    ->required(),
-                            ])
-                            ->columns(2)
-                            ->defaultItems(1)
-                            ->addActionLabel('Adicionar Embalagem')
-                            ->collapsible()
-                            ->itemLabel(fn(array $state): ?string =>
-                            isset($state['packing_id'])
-                                ? 'Embalagem: ' . \App\Models\Packing::find($state['packing_id'])?->name
-                                : null
-                            ),
                     ]),
+
+                    Section::make('Observações')
+                        ->icon('heroicon-s-document-text')
+                        ->columnSpan(3)
+                        ->schema([
+                            Textarea::make('notes')
+                                ->label('Observações')
+                                ->nullable()
+                                ->placeholder('Comentários extras sobre o pedido...')
+                                ->rows(3)
+                                ->columnSpanFull(),
+                        ]),
             ]);
     }
 }

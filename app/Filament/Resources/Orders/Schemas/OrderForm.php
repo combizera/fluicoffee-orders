@@ -80,7 +80,7 @@ class OrderForm
                     ->columnSpan(2)
                     ->schema([
                         Repeater::make('packings')
-                            ->relationship()
+                            ->label('Embalagens')
                             ->schema([
                                 Select::make('packing_id')
                                     ->label('Embalagem')

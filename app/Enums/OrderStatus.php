@@ -18,4 +18,14 @@ enum OrderStatus: string
             self::ON_THE_WAY => 'A Caminho',
         };
     }
+
+    public function color(): string
+    {
+        return match($this) {
+            self::PENDING => 'gray',
+            self::PROCESSING => 'warning',
+            self::READY => 'success',
+            self::ON_THE_WAY => 'info',
+        };
+    }
 }

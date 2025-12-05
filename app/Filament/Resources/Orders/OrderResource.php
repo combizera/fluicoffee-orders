@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 use UnitEnum;
 
 class OrderResource extends Resource
@@ -34,6 +35,11 @@ class OrderResource extends Resource
     protected static string | UnitEnum | null $navigationGroup = 'Vendas';
 
     protected static ?int $navigationSort = 1;
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->hasRole('admin');
+    }
 
     public static function form(Schema $schema): Schema
     {

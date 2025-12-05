@@ -22,7 +22,6 @@ class OrderFactory extends Factory
         return [
             'uuid' => $this->faker->uuid(),
             'customer_id' => Customer::factory(),
-            'packing_id' => Packing::query()->inRandomOrder()->first(),
             'roast_point' => $this->faker->randomElement(RoastPoint::cases())->value,
             'grind' => $this->faker->randomElement(Grind::cases())->value,
             'status' => $this->faker->randomElement(OrderStatus::cases())->value,

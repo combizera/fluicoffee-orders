@@ -5,9 +5,12 @@ namespace App\Models;
 use App\Enums\Grind;
 use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -36,9 +39,20 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    // TODO: validar relacionamento e criar tabela pivot se necessário
-    public function packing(): BelongsTo
+    public function packings(): BelongsToMany
     {
-        return $this->belongsTo(Packing::class);
+        return $this
+            ->belongsToMany(Packing::class, 'order_packings')
+            ->withPivot('quantity')
+            ->withTimestamps();
+    }
+
+    public function totalWeight(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->packings->sum(function ($packing) {
+                return $packing->weight * $packing->pivot->quantity;
+            })
+        );
     }
 }

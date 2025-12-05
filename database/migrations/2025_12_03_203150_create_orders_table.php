@@ -19,9 +19,6 @@ return new class extends Migration
             $table
                 ->foreignIdFor(Customer::class)
                 ->constrained();
-            $table
-                ->foreignIdFor(Packing::class)
-                ->constrained();
             $table->string('roast_point');
             $table->string('grind');
             $table->string('status');

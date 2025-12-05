@@ -2,3 +2,6 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+
+/* Flowforge */
+@source "../../../../vendor/relaticle/flowforge/resources/views/**/*.blade.php";

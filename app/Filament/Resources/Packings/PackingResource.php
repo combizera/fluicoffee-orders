@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class PackingResource extends Resource
 {
@@ -33,6 +34,11 @@ class PackingResource extends Resource
     protected static string | \UnitEnum | null $navigationGroup = 'Configurações';
 
     protected static ?int $navigationSort = 10;
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->hasRole('admin');
+    }
 
     public static function form(Schema $schema): Schema
     {

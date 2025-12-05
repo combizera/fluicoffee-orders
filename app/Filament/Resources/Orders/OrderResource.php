@@ -38,13 +38,11 @@ class OrderResource extends Resource
 
     public static function canAccess(): bool
     {
-        $user = Auth::user();
-
-        if($user->hasRole('admin')) {
-            return true;
+        if(!Auth::user()->hasRole('admin')) {
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     public static function form(Schema $schema): Schema

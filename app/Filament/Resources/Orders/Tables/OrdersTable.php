@@ -33,9 +33,16 @@ class OrdersTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('packing.name')
-                    ->label('Embalagem')
-                    ->sortable(),
+                TextColumn::make('total_weight')
+                    ->label('Peso Total')
+                    ->getStateUsing(fn($record) => $record->total_weight)
+                    ->numeric()
+                    ->alignCenter()
+                    ->suffix(' g')
+                    ->sortable(query: function ($query, $direction) {
+                        return $query->withSum('packings as total_weight', \DB::raw('weight * order_packings.quantity'))
+                            ->orderBy('total_weight', $direction);
+                    }),
 
                 TextColumn::make('roast_point')
                     ->label('Ponto de Torra')

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Grind;
 use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,5 +45,14 @@ class Order extends Model
             ->belongsToMany(Packing::class, 'order_packings')
             ->withPivot('quantity')
             ->withTimestamps();
+    }
+
+    public function totalWeight(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->packings->sum(function ($packing) {
+                return $packing->weight * $packing->pivot->quantity;
+            })
+        );
     }
 }

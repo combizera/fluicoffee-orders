@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\CustomerMiddleware;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -26,6 +27,7 @@ class CustomerPanelProvider extends PanelProvider
         return $panel
             ->id('customer')
             ->path('')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -37,7 +39,6 @@ class CustomerPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Customer/Widgets'), for: 'App\Filament\Customer\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -53,6 +54,7 @@ class CustomerPanelProvider extends PanelProvider
             ->unsavedChangesAlerts()
             ->authMiddleware([
                 Authenticate::class,
+                CustomerMiddleware::class,
             ]);
     }
 }

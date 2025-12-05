@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Filament\Resources\Orders\Pages;
+namespace App\Filament\Customer\Resources\Orders\Pages;
 
-use App\Filament\Resources\Orders\OrderResource;
+use App\Enums\OrderStatus;
+use App\Filament\Customer\Resources\Orders\OrderResource;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CreateOrder extends CreateRecord
@@ -13,6 +15,8 @@ class CreateOrder extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['uuid'] = Str::uuid()->toString();
+        $data['customer_id'] = Auth::user()->id;
+        $data['status'] = OrderStatus::PENDING->value;
 
         return $data;
     }

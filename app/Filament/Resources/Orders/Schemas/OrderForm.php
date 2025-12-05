@@ -77,9 +77,10 @@ class OrderForm
 
                 Section::make('Embalagens')
                     ->icon('heroicon-s-cube')
+                    ->columnSpan(2)
                     ->schema([
                         Repeater::make('packings')
-                            ->relationship()
+                            ->label('Embalagens')
                             ->schema([
                                 Select::make('packing_id')
                                     ->label('Embalagem')

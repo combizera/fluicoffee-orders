@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('grind');
             $table->string('status');
             $table->text('notes')->nullable();
+            $table->flowforgePositionColumn('position');
             $table->softDeletes();
             $table->timestamps();
         });

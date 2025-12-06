@@ -19,11 +19,12 @@ class UsersTable
                 IconColumn::make('customer')
                     ->label('Cliente')
                     ->boolean()
-                    ->getStateUsing(fn($record) => $record->customer()->exists())
+                    ->getStateUsing(fn($record) => !$record->customer()->exists())
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
                     ->falseColor('gray')
+                    ->tooltip(fn($record) => $record->customer ? 'Cliente' : 'Admin')
                     ->alignCenter(),
 
                 TextColumn::make('name')

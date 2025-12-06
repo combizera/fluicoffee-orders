@@ -41,6 +41,7 @@ class StatusBoard extends BoardPage
                     ->label('Peso')
                     ->badge()
                     ->suffix(' g')
+                    ->color('gray')
                     ->icon('heroicon-s-scale'),
 
                 TextEntry::make('roast_point')
@@ -53,19 +54,19 @@ class StatusBoard extends BoardPage
             ->columns([
                 Column::make(OrderStatus::PENDING->value)
                     ->label(OrderStatus::PENDING->label())
-                    ->color('warning'),
+                    ->color(OrderStatus::PENDING->color()),
 
                 Column::make(OrderStatus::PROCESSING->value)
                     ->label(OrderStatus::PROCESSING->label())
-                    ->color('gray'),
+                    ->color(OrderStatus::PROCESSING->color()),
 
                 Column::make(OrderStatus::READY->value)
                     ->label(OrderStatus::READY->label())
-                    ->color('green'),
+                    ->color(OrderStatus::READY->color()),
 
                 Column::make(OrderStatus::ON_THE_WAY->value)
                     ->label(OrderStatus::ON_THE_WAY->label())
-                    ->color('blue'),
+                    ->color(OrderStatus::ON_THE_WAY->color()),
             ]);
     }
 

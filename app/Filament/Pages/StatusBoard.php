@@ -5,7 +5,6 @@ namespace App\Filament\Pages;
 use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
 use App\Models\Order;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -22,7 +21,7 @@ class StatusBoard extends BoardPage
 
     protected static ?string $title = 'Gerencimento de Pedidos';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Vendas';
+    protected static string|\UnitEnum|null $navigationGroup = 'Vendas';
 
     public function board(Board $board): Board
     {
@@ -32,7 +31,7 @@ class StatusBoard extends BoardPage
             ->columnIdentifier('status')
             ->positionIdentifier('position')
             ->cardAction('edit')
-            //TODO:mostrar pro gui se ele quer isso
+            // TODO:mostrar pro gui se ele quer isso
             ->cardActions([
                 EditAction::make()->model(Order::class),
             ])
@@ -46,7 +45,7 @@ class StatusBoard extends BoardPage
 
                 TextEntry::make('roast_point')
                     ->label('Ponto')
-                    ->formatStateUsing(fn(RoastPoint $state) => $state->label())
+                    ->formatStateUsing(fn (RoastPoint $state) => $state->label())
                     ->badge('info')
                     ->icon('heroicon-s-fire'),
 

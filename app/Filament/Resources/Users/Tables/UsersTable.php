@@ -4,9 +4,7 @@ namespace App\Filament\Resources\Users\Tables;
 
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
@@ -24,12 +22,12 @@ class UsersTable
                 IconColumn::make('customer')
                     ->label('Cliente')
                     ->boolean()
-                    ->getStateUsing(fn($record) => $record->hasRole('admin'))
+                    ->getStateUsing(fn ($record) => $record->hasRole('admin'))
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
                     ->falseColor('gray')
-                    ->tooltip(fn($record) => $record->hasRole('admin') ? 'Admin' : 'Cliente')
+                    ->tooltip(fn ($record) => $record->hasRole('admin') ? 'Admin' : 'Cliente')
                     ->alignCenter(),
 
                 TextColumn::make('name')
@@ -63,8 +61,8 @@ class UsersTable
                 TernaryFilter::make('is_customer')
                     ->label('É Cliente')
                     ->queries(
-                        true: fn($query) => $query->whereHas('customer'),
-                        false: fn($query) => $query->whereDoesntHave('customer'),
+                        true: fn ($query) => $query->whereHas('customer'),
+                        false: fn ($query) => $query->whereDoesntHave('customer'),
                     ),
             ])
             ->recordActions([
@@ -74,8 +72,7 @@ class UsersTable
                 ActionGroup::make([
                     self::handleAdmin(),
                     DeleteAction::make()
-                        ->label('Excluir')
-                        ->requiresConfirmation(),
+                        ->label('Excluir'),
                 ]),
             ])
             ->toolbarActions([

@@ -31,7 +31,7 @@ class PackingResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Configurações';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurações';
 
     protected static ?int $navigationSort = 10;
 

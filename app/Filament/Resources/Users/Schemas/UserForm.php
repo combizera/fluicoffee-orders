@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -41,8 +40,8 @@ class UserForm
                         TextInput::make('password')
                             ->label('Senha')
                             ->password()
-                            ->required(fn($context) => $context === 'create')
-                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn ($context) => $context === 'create')
+                            ->dehydrated(fn ($state) => filled($state))
                             ->placeholder('********')
                             ->revealable()
                             ->minLength(8),

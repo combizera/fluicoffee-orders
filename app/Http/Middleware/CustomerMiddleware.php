@@ -16,7 +16,7 @@ class CustomerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user()->hasRole('user')){
+        if (! Auth::user()->hasRole('user')) {
             return redirect('/admin');
         }
 

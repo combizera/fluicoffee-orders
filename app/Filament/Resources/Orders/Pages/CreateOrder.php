@@ -23,7 +23,7 @@ class CreateOrder extends CreateRecord
 
         foreach ($packings as $packing) {
             $this->record->packings()->attach($packing['packing_id'], [
-                'quantity' => $packing['quantity']
+                'quantity' => $packing['quantity'],
             ]);
         }
     }

@@ -26,9 +26,9 @@ class OrderInfolist
 
                         TextEntry::make('status')
                             ->label('Status')
-                            ->formatStateUsing(fn(OrderStatus $state) => $state->label())
+                            ->formatStateUsing(fn (OrderStatus $state) => $state->label())
                             ->badge()
-                            ->color(fn(OrderStatus $state) => $state->color()),
+                            ->color(fn (OrderStatus $state) => $state->color()),
 
                         TextEntry::make('created_at')
                             ->label('Criado em')
@@ -42,23 +42,23 @@ class OrderInfolist
                     ->schema([
                         TextEntry::make('total_weight')
                             ->label('Peso Total')
-                            ->state(fn($record) => number_format($record->total_weight, 0, ',', ',') . ' gramas')
+                            ->state(fn ($record) => number_format($record->total_weight, 0, ',', ',').' gramas')
                             ->weight('bold'),
 
                         TextEntry::make('roast_point')
                             ->label('Ponto de Torra')
-                            ->formatStateUsing(fn(RoastPoint $state) => $state->label())
+                            ->formatStateUsing(fn (RoastPoint $state) => $state->label())
                             ->badge(),
 
                         TextEntry::make('grind')
                             ->label('Moagem')
-                            ->formatStateUsing(fn(Grind $state) => $state->label())
+                            ->formatStateUsing(fn (Grind $state) => $state->label())
                             ->badge(),
                     ]),
 
                 Section::make('Observações')
                     ->icon('heroicon-s-document-text')
-                    ->visible(fn($record) => filled($record->notes))
+                    ->visible(fn ($record) => filled($record->notes))
                     ->schema([
                         TextEntry::make('notes')
                             ->label('')

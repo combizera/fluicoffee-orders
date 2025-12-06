@@ -19,15 +19,15 @@ class PackingFactory extends Factory
         $packings = [
             [
                 'name' => 'Pacote - 250g',
-                'weight' => 250
+                'weight' => 250,
             ],
             [
                 'name' => 'Pacote - 500g',
-                'weight' => 500
+                'weight' => 500,
             ],
             [
                 'name' => 'Pacote - 1kg',
-                'weight' => 1000
+                'weight' => 1000,
             ],
         ];
 

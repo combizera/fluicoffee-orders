@@ -12,7 +12,7 @@ class CreateUser extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if($data['password'] !== $data['password_confirmation']) {
+        if ($data['password'] !== $data['password_confirmation']) {
             Notification::make('As senhas não coincidem.')
                 ->danger()
                 ->title('Erro ao criar usuário')

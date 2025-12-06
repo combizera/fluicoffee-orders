@@ -12,7 +12,7 @@ enum RoastPoint: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::LIGHT => 'Claro',
             self::MEDIUM_LIGHT => 'Médio Claro',
             self::MEDIUM => 'Médio',

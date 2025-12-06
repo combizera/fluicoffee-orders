@@ -6,7 +6,6 @@ use App\Enums\Grind;
 use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
 use App\Models\Customer;
-use App\Models\Packing;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

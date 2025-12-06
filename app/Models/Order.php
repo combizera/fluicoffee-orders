@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -50,7 +49,7 @@ class Order extends Model
     public function totalWeight(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->packings->sum(function ($packing) {
+            get: fn () => $this->packings->sum(function ($packing) {
                 return $packing->weight * $packing->pivot->quantity;
             })
         );

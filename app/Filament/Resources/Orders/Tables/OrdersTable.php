@@ -35,7 +35,7 @@ class OrdersTable
 
                 TextColumn::make('total_weight')
                     ->label('Peso Total')
-                    ->getStateUsing(fn($record) => $record->total_weight)
+                    ->getStateUsing(fn ($record) => $record->total_weight)
                     ->numeric()
                     ->alignCenter()
                     ->suffix(' g')
@@ -46,21 +46,21 @@ class OrdersTable
 
                 TextColumn::make('roast_point')
                     ->label('Ponto de Torra')
-                    ->formatStateUsing(fn(RoastPoint $state) => $state->label())
+                    ->formatStateUsing(fn (RoastPoint $state) => $state->label())
                     ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('grind')
                     ->label('Moagem')
-                    ->formatStateUsing(fn(Grind $state) => $state->label())
+                    ->formatStateUsing(fn (Grind $state) => $state->label())
                     ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('status')
                     ->label('Status')
-                    ->formatStateUsing(fn(OrderStatus $state) => $state->label())
+                    ->formatStateUsing(fn (OrderStatus $state) => $state->label())
                     ->alignCenter()
-                    ->color(fn(OrderStatus $state) => $state->color())
+                    ->color(fn (OrderStatus $state) => $state->color())
                     ->badge(),
 
                 TextColumn::make('created_at')
@@ -72,21 +72,21 @@ class OrdersTable
                 SelectFilter::make('status')
                     ->label('Status')
                     ->options(collect(OrderStatus::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->multiple(),
 
                 SelectFilter::make('roast_point')
                     ->label('Ponto de Torra')
                     ->options(collect(RoastPoint::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->multiple(),
 
                 SelectFilter::make('grind')
                     ->label('Moagem')
                     ->options(collect(Grind::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->multiple(),
 
@@ -126,11 +126,11 @@ class OrdersTable
                 Select::make('status')
                     ->label('Novo Status')
                     ->options(collect(OrderStatus::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->required()
                     ->native(false)
-                    ->default(fn($record) => $record->status),
+                    ->default(fn ($record) => $record->status),
             ])
             ->action(function (array $data, $record) {
                 $record->update([

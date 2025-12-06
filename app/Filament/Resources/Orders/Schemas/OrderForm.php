@@ -25,7 +25,7 @@ class OrderForm
                         Select::make('customer_id')
                             ->label('Cliente')
                             ->relationship('customer', 'user.name')
-                            ->getOptionLabelFromRecordUsing(fn($record) => $record->user->name)
+                            ->getOptionLabelFromRecordUsing(fn ($record) => $record->user->name)
                             ->searchable()
                             ->preload()
                             ->required(),
@@ -39,7 +39,7 @@ class OrderForm
                         Select::make('roast_point')
                             ->label('Ponto de Torra')
                             ->options(collect(RoastPoint::cases())->mapWithKeys(
-                                fn($case) => [$case->value => $case->label()]
+                                fn ($case) => [$case->value => $case->label()]
                             ))
                             ->required()
                             ->native(false),
@@ -47,7 +47,7 @@ class OrderForm
                         Select::make('grind')
                             ->label('Moagem')
                             ->options(collect(Grind::cases())->mapWithKeys(
-                                fn($case) => [$case->value => $case->label()]
+                                fn ($case) => [$case->value => $case->label()]
                             ))
                             ->required()
                             ->native(false),
@@ -55,7 +55,7 @@ class OrderForm
                         Select::make('status')
                             ->label('Status')
                             ->options(collect(OrderStatus::cases())->mapWithKeys(
-                                fn($case) => [$case->value => $case->label()]
+                                fn ($case) => [$case->value => $case->label()]
                             ))
                             ->default(OrderStatus::PENDING->value)
                             ->required()
@@ -100,9 +100,8 @@ class OrderForm
                             ->defaultItems(1)
                             ->addActionLabel('Adicionar Embalagem')
                             ->collapsible()
-                            ->itemLabel(fn(array $state): ?string =>
-                            isset($state['packing_id'])
-                                ? 'Embalagem: ' . \App\Models\Packing::find($state['packing_id'])?->name
+                            ->itemLabel(fn (array $state): ?string => isset($state['packing_id'])
+                                ? 'Embalagem: '.\App\Models\Packing::find($state['packing_id'])?->name
                                 : null
                             ),
                     ]),

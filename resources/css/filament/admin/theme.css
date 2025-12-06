@@ -63,3 +63,7 @@
 .dark .flowforge-card-content h4 {
     @apply text-base;
 }
+
+.dark .fi-main .fi-width-7xl {
+    @apply bg-red-900;
+}

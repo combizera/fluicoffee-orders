@@ -5,3 +5,24 @@
 
 /* Flowforge */
 @source "../../../../vendor/relaticle/flowforge/resources/views/**/*.blade.php";
+
+.flowforge-card-content .fi-sc-has-gap {
+    @apply flex gap-4;
+}
+.dark .flowforge-card-content .fi-sc-has-gap {
+    @apply flex gap-4;
+}
+
+.flowforge-card-content .fi-in-entry-label {
+    @apply text-gray-500;
+}
+.dark .flowforge-card-content .fi-in-entry-label {
+    @apply text-gray-400;
+}
+
+.flowforge-card-content h4 {
+    @apply text-base;
+}
+.dark .flowforge-card-content h4 {
+    @apply text-base;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder;
 use Relaticle\Flowforge\Board;
@@ -10,21 +11,38 @@ use Relaticle\Flowforge\Column;
 
 class StatusBoard extends BoardPage
 {
-    protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-view-columns';
-    protected static ?string $navigationLabel = 'Status Board';
-    protected static ?string $title = 'Order Board';
+    protected static string|null|\BackedEnum $navigationIcon = 'heroicon-s-view-columns';
+
+    protected static ?string $navigationLabel = 'Quadro de Pedidos';
+
+    protected static ?string $title = 'Gerencimento de Pedidos';
+
+    protected static string | \UnitEnum | null $navigationGroup = 'Vendas';
 
     public function board(Board $board): Board
     {
         return $board
             ->query($this->getEloquentQuery())
-            ->recordTitleAttribute('title')
+            //TODO: colocar um subtitle
+            ->recordTitleAttribute('customer.user.name')
             ->columnIdentifier('status')
-            ->positionIdentifier('position') // Enable drag-and-drop with position field
+            ->positionIdentifier('position')
             ->columns([
-                Column::make('todo')->label('To Do')->color('gray'),
-                Column::make('in_progress')->label('In Progress')->color('blue'),
-                Column::make('completed')->label('Completed')->color('green'),
+                Column::make(OrderStatus::PENDING->value)
+                    ->label(OrderStatus::PENDING->label())
+                    ->color('warning'),
+
+                Column::make(OrderStatus::PROCESSING->value)
+                    ->label(OrderStatus::PROCESSING->label())
+                    ->color('gray'),
+
+                Column::make(OrderStatus::READY->value)
+                    ->label(OrderStatus::READY->label())
+                    ->color('green'),
+
+                Column::make(OrderStatus::ON_THE_WAY->value)
+                    ->label(OrderStatus::ON_THE_WAY->label())
+                    ->color('blue'),
             ]);
     }
 

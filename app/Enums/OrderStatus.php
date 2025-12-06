@@ -11,7 +11,7 @@ enum OrderStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PENDING => 'Aguardando',
             self::PROCESSING => 'Em Processo',
             self::READY => 'Pronto para Retirada',
@@ -21,7 +21,7 @@ enum OrderStatus: string
 
     public function color(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PENDING => 'gray',
             self::PROCESSING => 'warning',
             self::READY => 'success',

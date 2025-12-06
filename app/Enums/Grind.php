@@ -12,7 +12,7 @@ enum Grind: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::WHOLE_BEAN => 'Grão Inteiro',
             self::COARSE => 'Grossa',
             self::MEDIUM => 'Média',

@@ -29,7 +29,7 @@ class UserResource extends Resource
 
     protected static ?string $slug = 'usuarios';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Configurações';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurações';
 
     protected static ?int $navigationSort = 99;
 

@@ -33,7 +33,7 @@ class OrderResource extends Resource
 
     protected static ?string $slug = 'pedidos';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Seus Pedidos';
+    protected static string|\UnitEnum|null $navigationGroup = 'Seus Pedidos';
 
     protected static ?int $navigationSort = 1;
 

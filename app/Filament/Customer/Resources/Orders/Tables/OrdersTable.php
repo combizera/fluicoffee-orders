@@ -6,16 +6,10 @@ use App\Enums\Grind;
 use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
 use Filament\Actions\ActionGroup;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class OrdersTable
@@ -32,7 +26,7 @@ class OrdersTable
 
                 TextColumn::make('total_weight')
                     ->label('Peso Total')
-                    ->getStateUsing(fn($record) => $record->total_weight)
+                    ->getStateUsing(fn ($record) => $record->total_weight)
                     ->numeric()
                     ->alignCenter()
                     ->suffix(' g')
@@ -43,21 +37,21 @@ class OrdersTable
 
                 TextColumn::make('roast_point')
                     ->label('Ponto de Torra')
-                    ->formatStateUsing(fn(RoastPoint $state) => $state->label())
+                    ->formatStateUsing(fn (RoastPoint $state) => $state->label())
                     ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('grind')
                     ->label('Moagem')
-                    ->formatStateUsing(fn(Grind $state) => $state->label())
+                    ->formatStateUsing(fn (Grind $state) => $state->label())
                     ->alignCenter()
                     ->badge(),
 
                 TextColumn::make('status')
                     ->label('Status')
-                    ->formatStateUsing(fn(OrderStatus $state) => $state->label())
+                    ->formatStateUsing(fn (OrderStatus $state) => $state->label())
                     ->alignCenter()
-                    ->color(fn(OrderStatus $state) => $state->color())
+                    ->color(fn (OrderStatus $state) => $state->color())
                     ->badge(),
 
                 TextColumn::make('created_at')
@@ -69,21 +63,21 @@ class OrdersTable
                 SelectFilter::make('status')
                     ->label('Status')
                     ->options(collect(OrderStatus::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->multiple(),
 
                 SelectFilter::make('roast_point')
                     ->label('Ponto de Torra')
                     ->options(collect(RoastPoint::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->multiple(),
 
                 SelectFilter::make('grind')
                     ->label('Moagem')
                     ->options(collect(Grind::cases())->mapWithKeys(
-                        fn($case) => [$case->value => $case->label()]
+                        fn ($case) => [$case->value => $case->label()]
                     ))
                     ->multiple(),
             ])

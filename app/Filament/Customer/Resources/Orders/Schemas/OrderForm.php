@@ -3,13 +3,12 @@
 namespace App\Filament\Customer\Resources\Orders\Schemas;
 
 use App\Enums\Grind;
-use App\Enums\OrderStatus;
 use App\Enums\RoastPoint;
 use App\Models\Packing;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -29,9 +28,8 @@ class OrderForm
                             ->defaultItems(1)
                             ->addActionLabel('Adicionar Embalagem')
                             ->collapsible()
-                            ->itemLabel(fn(array $state): ?string =>
-                                isset($state['packing_id'])
-                                    ? 'Embalagem: ' . Packing::find($state['packing_id'])?->name
+                            ->itemLabel(fn (array $state): ?string => isset($state['packing_id'])
+                                    ? 'Embalagem: '.Packing::find($state['packing_id'])?->name
                                     : null
                             )
                             ->schema([
@@ -59,7 +57,7 @@ class OrderForm
                         Select::make('roast_point')
                             ->label('Ponto de Torra')
                             ->options(collect(RoastPoint::cases())->mapWithKeys(
-                                fn($case) => [$case->value => $case->label()]
+                                fn ($case) => [$case->value => $case->label()]
                             ))
                             ->required()
                             ->native(false),
@@ -67,23 +65,23 @@ class OrderForm
                         Select::make('grind')
                             ->label('Moagem')
                             ->options(collect(Grind::cases())->mapWithKeys(
-                                fn($case) => [$case->value => $case->label()]
+                                fn ($case) => [$case->value => $case->label()]
                             ))
                             ->required()
                             ->native(false),
                     ]),
 
-                    Section::make('Observações')
-                        ->icon('heroicon-s-document-text')
-                        ->columnSpan(3)
-                        ->schema([
-                            Textarea::make('notes')
-                                ->label('Observações')
-                                ->nullable()
-                                ->placeholder('Comentários extras sobre o pedido...')
-                                ->rows(3)
-                                ->columnSpanFull(),
-                        ]),
+                Section::make('Observações')
+                    ->icon('heroicon-s-document-text')
+                    ->columnSpan(3)
+                    ->schema([
+                        Textarea::make('notes')
+                            ->label('Observações')
+                            ->nullable()
+                            ->placeholder('Comentários extras sobre o pedido...')
+                            ->rows(3)
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

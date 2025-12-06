@@ -5,3 +5,65 @@
 
 /* Flowforge */
 @source "../../../../vendor/relaticle/flowforge/resources/views/**/*.blade.php";
+
+/* Espaçamento horizontal entre colunas */
+.flowforge-board {
+    @apply gap-6;
+}
+
+/* Scrollbar horizontal com padding superior */
+.flowforge-board-container {
+    @apply pt-5;
+}
+
+/* Estiliza scrollbar vertical das colunas - mais discreta */
+.flowforge-column-content::-webkit-scrollbar {
+    @apply w-1;
+}
+
+.flowforge-column-content::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+.flowforge-column-content::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+.flowforge-column-content::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Ou esconde completamente a scrollbar vertical */
+.flowforge-column-content {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.flowforge-column-content::-webkit-scrollbar {
+    @apply hidden; /* Chrome/Safari */
+}
+
+.flowforge-card-content .fi-sc-has-gap {
+    @apply flex gap-4;
+}
+.dark .flowforge-card-content .fi-sc-has-gap {
+    @apply flex gap-4;
+}
+
+.flowforge-card-content .fi-in-entry-label {
+    @apply text-gray-500;
+}
+.dark .flowforge-card-content .fi-in-entry-label {
+    @apply text-gray-400;
+}
+
+.flowforge-card-content h4 {
+    @apply text-base;
+}
+.dark .flowforge-card-content h4 {
+    @apply text-base;
+}
+
+.dark .fi-main .fi-width-7xl {
+    @apply bg-red-900;
+}

@@ -2,13 +2,16 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class UsersTable
 {
@@ -19,11 +22,12 @@ class UsersTable
                 IconColumn::make('customer')
                     ->label('Cliente')
                     ->boolean()
-                    ->getStateUsing(fn($record) => $record->customer()->exists())
+                    ->getStateUsing(fn ($record) => $record->hasRole('admin'))
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
                     ->falseColor('gray')
+                    ->tooltip(fn ($record) => $record->hasRole('admin') ? 'Admin' : 'Cliente')
                     ->alignCenter(),
 
                 TextColumn::make('name')
@@ -57,16 +61,56 @@ class UsersTable
                 TernaryFilter::make('is_customer')
                     ->label('É Cliente')
                     ->queries(
-                        true: fn($query) => $query->whereHas('customer'),
-                        false: fn($query) => $query->whereDoesntHave('customer'),
+                        true: fn ($query) => $query->whereHas('customer'),
+                        false: fn ($query) => $query->whereDoesntHave('customer'),
                     ),
             ])
             ->recordActions([
                 EditAction::make()
                     ->label('Editar'),
+
+                ActionGroup::make([
+                    self::handleAdmin(),
+                    DeleteAction::make()
+                        ->label('Excluir'),
+                ]),
             ])
             ->toolbarActions([
                 //
             ]);
+    }
+
+    protected static function handleAdmin(): Action
+    {
+        return Action::make('admin')
+            ->label(fn (Model $record) => $record->hasRole('admin') ? 'Remover Admin' : 'Tornar Admin')
+            ->color(fn (Model $record) => $record->hasRole('admin') ? 'danger' : 'success')
+            ->requiresConfirmation()
+            ->icon('heroicon-s-user')
+            ->action(function (Model $record) {
+                if ($record->hasRole('admin')) {
+                    $record->removeRole('admin');
+                } else {
+                    $record->assignRole('admin');
+                }
+                $record->save();
+            })
+            ->after(function (Model $record) {
+                if ($record->hasRole('admin')) {
+                    Notification::make()
+                        ->success()
+                        ->duration(5000)
+                        ->title("$record->name é admin")
+                        ->body("$record->name agora se tornou um admin")
+                        ->send();
+                } else {
+                    Notification::make()
+                        ->danger()
+                        ->duration(5000)
+                        ->title("$record->name não é admin")
+                        ->body("$record->name não é mais admin")
+                        ->send();
+                }
+            });
     }
 }

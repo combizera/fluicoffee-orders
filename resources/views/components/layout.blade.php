@@ -33,7 +33,7 @@
 <body class="min-h-screen">
 
 {{-- MAIN --}}
-<main class="">
+<main class="text-coffee-700 bg-coffee-400">
     {{-- HEADER --}}
     <x-header />
 

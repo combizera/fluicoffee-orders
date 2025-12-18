@@ -1,13 +1,5 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fluicoffee</title>
-</head>
-<body>
-
-
-{{ route('') }}
-</body>
-</html>
+<x-layout>
+    <h1>
+        Página Inicial do Site
+    </h1>
+</x-layout>

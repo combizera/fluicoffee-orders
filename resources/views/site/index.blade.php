@@ -2,4 +2,6 @@
   {{-- HERO --}}
   <x-hero />
 
+  {{-- BENEFITS --}}
+  <x-benefits />
 </x-layout>

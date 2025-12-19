@@ -5,28 +5,51 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@font-face {
+  font-family: 'PPMigra';
+  src: url('./fonts/PPMigra-Extrabold.woff2') format('woff2'),
+  url('./fonts/PPMigra-Extrabold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
-    --color-coffee-700: #613C2A;
-    --color-coffee-400: #F2EFE8;
+@font-face {
+  font-family: 'PPMigra';
+  src: url('./fonts/PPMigra-Regular.woff2') format('woff2'),
+  url('./fonts/PPMigra-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-pp-migra: 'PPMigra', serif;
+
+  --color-coffee-700: #613C2A;
+  --color-coffee-400: #F2EFE8;
+}
+
+.title {
+  @apply font-pp-migra;
 }
 
 .header {
-    width: calc(100% - 100px);
-    border-radius: 0 0 30px 30px;
-    position: relative;
+  width: calc(100% - 100px);
+  border-radius: 0 0 30px 30px;
+  position: relative;
 }
 
 .corner {
-    position: absolute;
+  position: absolute;
 }
 
 .corner-left {
-    left: -70px;
+  left: -70px;
 }
 
 .corner-right {
-    right: -70px;
+  right: -70px;
 }

@@ -1,5 +1,5 @@
 <x-layout>
-    <h1>
-        Página Inicial do Site
-    </h1>
+  {{-- HERO --}}
+  <x-hero />
+
 </x-layout>

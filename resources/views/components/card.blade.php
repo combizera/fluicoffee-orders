@@ -3,6 +3,8 @@
   'description' => null,
   'image' => null,
   'button' => false,
+  'buttonText' => 'Entre em Contato',
+  'buttonLink' => '',
 ])
 <li class="flex flex-col items-start">
   <img
@@ -19,7 +21,8 @@
   </p>
   @if($button)
     <x-btn.sec
-      title="Entre em Contato"
+      :title="$buttonText"
+      :link="$buttonLink"
     />
   @endif
 </li>

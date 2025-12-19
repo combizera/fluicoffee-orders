@@ -16,25 +16,23 @@
       title="Rastreabilidade Completa"
       description="Cada pedido recebe um código único. Você sabe exatamente onde seu café está no processo, a qualquer momento."
       button
+      buttonText="Saiba Mais"
     />
 
     <x-card
-      title="Rastreabilidade Completa"
-      description="Cada pedido recebe um código único. Você sabe exatamente onde seu café está no processo, a qualquer momento."
-      button
+      title="Atendimento Personalizado"
+      description="Não somos uma indústria de massa. Conhecemos nossos parceiros produtores e entendemos as particularidades de cada safra e região."
     />
 
     <x-card
-      title="Rastreabilidade Completa"
-      description="Cada pedido recebe um código único. Você sabe exatamente onde seu café está no processo, a qualquer momento."
-      button
+      title="Rapidez no Processo"
+      description="Da entrada do café verde à torra final em poucos dias. Ideal para quem vende em feiras, eventos ou precisa atender pedidos rápidos de clientes."
     />
 
     <x-card
-      title="Rastreabilidade Completa"
-      description="Cada pedido recebe um código único. Você sabe exatamente onde seu café está no processo, a qualquer momento."
+      title="Consultoria Sem Custo"
+      description="Dúvidas sobre qual ponto de torra destacar o perfil sensorial do seu café? Ajudamos você a tomar a melhor decisão para seu produto."
       button
     />
-
   </ul>
 </section>

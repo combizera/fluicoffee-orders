@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (! Auth::user()->hasRole('admin')) {
-            return redirect('/');
+            return redirect('/pedidos');
         }
 
         return $next($request);

@@ -39,7 +39,6 @@
 .header {
   width: calc(100% - 100px);
   border-radius: 0 0 30px 30px;
-  position: relative;
 }
 
 .corner {

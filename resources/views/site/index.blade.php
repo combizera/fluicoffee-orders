@@ -5,9 +5,9 @@
   {{-- BENEFITS --}}
   <x-benefits />
 
+  {{-- ADVANTAGES --}}
+  <x-advantages />
+
   {{-- CTA --}}
   <x-cta />
-
-  <div class="pb-50">
-  </div>
 </x-layout>

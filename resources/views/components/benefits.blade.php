@@ -1,38 +1,43 @@
-<section class="px-10 grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+<section class="my-30">
   {{-- TITLE --}}
-  <div class="sticky top-4 h-fit">
-    <h2 class="title text-4xl md:text-5xl leading-[1.2]">
-      Alguns dos Nossos
-      <br>
-      <strong>
-        Diferenciais
-      </strong>
+  <div class="max-w-7xl mx-auto flex justify-center relative">
+    <h2 class="title max-w-[500px] text-coffee-400 text-center pt-8 px-4 pb-2 text-3xl md:text-4xl bg-coffee-700 rounded-t-[30px] rounded-b-none">
+      Torrefação Sob <strong>Medida</strong>
     </h2>
   </div>
 
-  {{-- CARDS --}}
-  <ul class="flex flex-col gap-30">
-    <x-card
-      title="Rastreabilidade Completa"
-      description="Cada pedido recebe um código único. Você sabe exatamente onde seu café está no processo, a qualquer momento."
-      button
-      buttonText="Saiba Mais"
-    />
+  {{-- GRID --}}
+  <div class="bg-coffee-700">
+    <ul class="max-w-7xl mx-auto p-2 grid grid-cols-1 md:grid-cols-4 gap-8 pt-30 pb-20">
+      <x-benefit.item
+        icon="internet"
+        title="Faça Seu Pedido Online"
+        description="Acesse nossa plataforma e especifique: quantidade (peso), ponto de torra, tipo de moagem e embalagem desejada. Em poucos cliques, seu pedido está registrado."
+      />
 
-    <x-card
-      title="Atendimento Personalizado"
-      description="Não somos uma indústria de massa. Conhecemos nossos parceiros produtores e entendemos as particularidades de cada safra e região."
-    />
+      <x-benefit.item
+        icon="coffee"
+        title="Entregue Seu Café "
+        description="Traga seus grãos até nossa torrefação em Santo Antônio do Jardim - SP. Validamos a qualidade, peso e registramos a entrada do seu lote no sistema."
+      />
 
-    <x-card
-      title="Rapidez no Processo"
-      description="Da entrada do café verde à torra final em poucos dias. Ideal para quem vende em feiras, eventos ou precisa atender pedidos rápidos de clientes."
-    />
+      <x-benefit.item
+        icon="burn"
+        title="Torrefação Profissional"
+        description="Sua produção entra em processo com o perfil de torra que você escolheu. Acompanhe o status em tempo real pelo nosso sistema online."
+      />
 
-    <x-card
-      title="Consultoria Sem Custo"
-      description="Dúvidas sobre qual ponto de torra destacar o perfil sensorial do seu café? Ajudamos você a tomar a melhor decisão para seu produto."
-      button
-    />
-  </ul>
+      <x-benefit.item
+        icon="packing"
+        title="Faça Seu Pedido Online"
+        description="Receba seu café embalado, identificado e pronto para venda. Cada embalagem pode ter sua marca e informações personalizadas."
+      />
+
+      <x-btn.pri
+        title="Solicite seu Orçamento"
+        url="#contact"
+        class="col-span-1 md:col-span-4 text-center mx-auto"
+      />
+    </ul>
+  </div>
 </section>

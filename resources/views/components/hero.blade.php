@@ -1,4 +1,4 @@
-<section class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center py-20 px-2">
+<section class="max-w-7xl mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4 items-center py-20 px-2">
   {{-- TITLE --}}
   <div class="flex flex-col items-start gap-4 col-span-1 md:col-span-2">
     <h1 class="title text-4xl md:text-5xl lg:text-6xl leading-[1.2] pr-0 md:pr-20">

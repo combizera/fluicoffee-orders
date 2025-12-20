@@ -2,10 +2,10 @@
 
   {{-- CORNERS --}}
   <x-icons.corner-left
-    class="-left-[80px] bottom-0 rotate-90"
+    class="-left-[80px] -bottom-[10px] rotate-90"
   />
-  <x-icons.corner-right
-    class="-right-[70px]"
+  <x-icons.corner-left
+    class="-right-[70px] bottom-0 rotate-180"
   />
 
   <div class="flex items-center justify-between">

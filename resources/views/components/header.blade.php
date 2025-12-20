@@ -4,8 +4,8 @@
   <x-icons.corner-left
     class="-left-[70px]"
   />
-  <x-icons.corner-right
-    class="-right-[70px]"
+  <x-icons.corner-left
+    class="-right-[80px] -rotate-90 -top-[10px]"
   />
 
   {{-- LOGO --}}

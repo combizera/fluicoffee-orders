@@ -1,4 +1,4 @@
-<section class="px-10 grid grid-cols-2 gap-8 relative">
+<section class="px-10 grid grid-cols-1 md:grid-cols-2 gap-8 relative">
   {{-- TITLE --}}
   <div class="sticky top-4 h-fit">
     <h2 class="title text-4xl md:text-5xl leading-[1.2]">

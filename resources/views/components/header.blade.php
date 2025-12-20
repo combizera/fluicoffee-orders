@@ -1,12 +1,8 @@
-<header class="header max-w-7xl mx-auto bg-coffee-700 min-h-20 py-0 px-8 text-coffee-400 flex items-center justify-between relative">
-
+{{-- HEADER --}}
+<header class="header max-w-7xl mx-auto bg-coffee-700 min-h-20 py-0 px-8 text-coffee-400 flex items-center justify-between relative animate-on-scroll">
   {{-- CORNERS --}}
-  <x-icons.corner-left
-    class="-left-[70px]"
-  />
-  <x-icons.corner-left
-    class="-right-[80px] -rotate-90 -top-[10px]"
-  />
+  <x-icons.corner-left class="-left-[70px]" />
+  <x-icons.corner-left class="-right-[80px] -rotate-90 -top-[10px]" />
 
   {{-- LOGO --}}
   <div>

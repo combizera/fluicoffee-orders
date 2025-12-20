@@ -1,8 +1,12 @@
 <header class="header max-w-7xl mx-auto bg-coffee-700 min-h-20 py-0 px-8 text-coffee-400 flex items-center justify-between relative">
 
   {{-- CORNERS --}}
-  <x-icons.corner-left />
-  <x-icons.corner-right />
+  <x-icons.corner-left
+    class="-left-[70px]"
+  />
+  <x-icons.corner-right
+    class="-right-[70px]"
+  />
 
   {{-- LOGO --}}
   <div>

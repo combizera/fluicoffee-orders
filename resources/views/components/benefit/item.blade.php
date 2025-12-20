@@ -4,12 +4,12 @@
   'icon' => 'coffee',
 ])
 
-<li class="text-coffee-400 flex flex-col items-start gap-4 border-r border-color-[#F2EFE8] last:border-0 pr-5">
+<li class="text-coffee-400 flex flex-col items-start gap-2 pr-5">
   <x-dynamic-component component="icons.{{ $icon }}" />
-  <h3 class="text-3xl">
+  <h3 class="text-3xl mt-2 mr-10 font-semibold">
     {{ $title }}
   </h3>
-  <p class="text-lg">
+  <p class="text-lg opacity-70">
     {{ $description }}
   </p>
 </li>

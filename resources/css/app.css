@@ -45,14 +45,6 @@
   position: absolute;
 }
 
-.corner-left {
-  left: -70px;
-}
-
-.corner-right {
-  right: -70px;
-}
-
 .cta-button {
   @apply absolute right-0 bottom-0 size-[120px] rounded-tl-2xl bg-coffee-400;
   @apply before:absolute before:right-full before:bottom-0 before:size-12 before:rounded-br-2xl;

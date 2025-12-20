@@ -53,3 +53,22 @@
 .corner-right {
   right: -70px;
 }
+
+.cta-button {
+  @apply absolute right-0 bottom-0 size-[120px] rounded-tl-2xl bg-coffee-400;
+  @apply before:absolute before:right-full before:bottom-0 before:size-12 before:rounded-br-2xl;
+  @apply before:shadow-[5px_5px_0_0_var(--color-coffee-400)];
+  @apply after:absolute after:right-0 after:bottom-full after:size-16 after:rounded-br-2xl;
+  @apply after:shadow-[5px_5px_0_0_var(--color-coffee-400)];
+}
+
+.cta-button a {
+  @apply absolute right-0 bottom-0 rounded-2xl flex items-center justify-center;
+  @apply bg-coffee-700 w-[100px] h-[100px] transition duration-200 ease-linear;
+}
+.cta-button a svg {
+  @apply transition duration-200 ease-linear;
+}
+.cta-button a:hover svg {
+  @apply translate-x-[3px] -translate-y-[3px] opacity-60;
+}

@@ -50,6 +50,6 @@
 
   {{-- COPY --}}
   <p class="text-[#C3A08F] text-sm text-center mt-4 border-t border-coffee-400/30 py-2">
-    © {{ date('Y') }} Fluicoffee. Feito por <a href="https://combizera.com" class="underline hover:opacity-80 transition">Ygor Combi</a>
+    © {{ date('Y') }} Fluicoffee. Feito por <a target="_blank" href="https://combizera.com" class="underline hover:opacity-80 transition">Ygor Combi</a>
   </p>
 </footer>
